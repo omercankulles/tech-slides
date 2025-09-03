@@ -389,7 +389,7 @@ function SlideSection({
         ) : null}
 
         {!isToc && slide.id === 11 ? (
-          <div className="mt-8 thank-wrap">
+          <div className="mt-6 sm:mt-8 thank-wrap">
             <div className="thank-title">Katılımınız için teşekkürler!</div>
             <div className="thank-sub">
               Birlikte daha iyisini inşa etmeye devam edelim.

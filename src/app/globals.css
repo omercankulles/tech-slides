@@ -109,6 +109,7 @@ body {
 .scroll-indicator { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); width: 26px; height: 46px; border: 2px solid rgba(255,255,255,.5); border-radius: 20px; }
 .scroll-indicator::after { content: ""; position: absolute; left: 50%; top: 8px; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 9999px; background: #fff; animation: wheel 1.4s ease-in-out infinite; }
 @keyframes wheel { 0% { opacity: 0; transform: translate(-50%, 0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, 14px); } }
+@media (max-width: 640px) { .scroll-indicator { display: none; } }
 
 /* Team cards */
 .team-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
