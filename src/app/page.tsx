@@ -49,18 +49,18 @@ const slidesData: Slide[] = [
   {
     id: 1,
     title: "Tech Departments",
-    subtitle: `Interesting Engineering – Operasyon Ekibine Sunum — ${TODAY}`,
+    subtitle: `Team Members`,
   },
   {
     id: 2,
     title: "Sunum İçeriği",
     bullets: [
-      "Tech Ekibinin Rolü",
+      "Görev ve Sorumluluklar",
       "Yürütülen Başlıca Projeler",
       "Operasyonlara Katkılar",
-      "Süreçler ve Otomasyonlar",
+      "Tool’lar & Entegrasyonlar (1/2)",
+      "Tool’lar & Entegrasyonlar (2/2)",
       "Örnek Başarılar / İyileştirmeler",
-      "Kullanılan Teknolojiler",
       "Gelecek Planları",
     ],
   },
@@ -74,6 +74,7 @@ const slidesData: Slide[] = [
       "Veri ambarı/BI ve raporlama altyapıları ile analitik çıktılar üretmek",
       "Otomasyon ve script’lerle tekrarlı işleri azaltmak; iş akışlarını standardize etmek",
       "MSN, Yahoo, Apple News vb. yayıncılara iletilen feed/RSS akışlarının doğruluğunu ve sürekliliğini sağlamak",
+      "Sitede reklamların doğru görünmesi ve çalışması için ad stack doğrulama, layout ve latency kontrolleri",
       "API, webhook, veritabanı ve 3. parti servis entegrasyonlarını tasarlamak ve işletmek",
       "Uygulama/altyapı güvenliği ve veri bütünlüğünü sağlamak; erişim ve uyumluluk yönetimi",
       "Sürümleme, CI/CD ve gözlemlenebilirlik (log, metric, alert) pratiklerini uygulamak",
@@ -101,23 +102,41 @@ const slidesData: Slide[] = [
       "Otomasyon sayesinde tekrar eden işlerin azaltılması (örn. YouTube’dan Connatix’e geçiş süreci)",
       "SEO skorlarının artması için plugin geliştirilmesi (IE Link Fixer)",
       "Subscription açıklarının tespiti ve düzeltilmesi (süresi geçmiş kullanıcılar cronjobs ile iptal)",
-      "Operasyon ekibinin hızlı ve doğru veri alması",
+      "Marketing, Sosyal Medya, Editorial ekibinin hızlı ve doğru veri alması",
       "İş yükü yönetimi ve önceliklendirme kolaylığı",
       "Süreç şeffaflığı ve raporlamaların düzenlenmesi",
     ],
   },
   {
     id: 6,
-    title: "Süreçler ve Otomasyonlar",
+    title: "Kullanılan Tool’lar & Entegrasyonlar (1/2)",
     bullets: [
-      "API/Script tabanlı veri çekme",
-      "Video ve içerik yükleme kontrolü",
-      "Veritabanı yönetimi ve raporlama",
-      "Operasyon ekibine özel dashboard/panel",
+      "WordPress VIP — Enterprise CMS, içerik yönetimi ve REST API",
+      "AWS — Barındırma ve altyapı servisleri (S3, CloudFront, Lambda vb.)",
+      "Braintree — Ödeme altyapısı, abonelik yönetimi ve iade süreçleri",
+      "Connatix — Video monetizasyon, player entegrasyonu ve içerik akışı",
+      "Raptive Ads — Display reklam yönetimi ve gelir optimizasyonu",
+      "Hubspot — CRM, form toplayıcı ve otomasyon entegrasyonları",
     ],
   },
   {
     id: 7,
+    title: "Kullanılan Tool’lar & Entegrasyonlar (2/2)",
+    bullets: [
+      "Firebase — Auth, Realtime DB/Firestore, push ve analytics",
+      "Pushly — Web push bildirim platformu, segmentasyon ve hedefleme",
+      "Shopify — E-ticaret entegrasyonu, ürün kataloğu ve sipariş webhooks",
+      "JBoard — İş ilanı/başvuru yönetimi ve embed entegrasyonu",
+      "Outbrain — Native reklam dağıtımı ve içerik öneri motoru",
+      "Semrush — SEO anahtar kelime, site denetimi ve rekabet analizi",
+    ],
+  },
+  {
+    id: 8,
+    title: "Sitelerimiz",
+  },
+  {
+    id: 9,
     title: "Örnek Başarılar / İyileştirmeler",
     bullets: [
       "%100 tekrar yükleme hatası önleme",
@@ -127,7 +146,7 @@ const slidesData: Slide[] = [
     ],
   },
   {
-    id: 8,
+    id: 10,
     title: "Gelecek Planları",
     bullets: [
       "Daha fazla otomasyon ve dashboard",
@@ -137,33 +156,35 @@ const slidesData: Slide[] = [
     ],
   },
   {
-    id: 9,
+    id: 11,
     title: "Kapanış ve Teşekkür",
-    bullets: [
-      "Sunum özeti",
-      "Tech × Operasyon iş birliği vurgusu",
-      "Sorular ve geri bildirimler",
-    ],
+    bullets: undefined,
   },
 ];
 
 function SlideSection({
   slide,
   onGoToId,
+  total,
+  displayIndex,
 }: {
   slide: Slide;
   onGoToId?: (id: number) => void;
+  total: number;
+  displayIndex: number;
 }) {
   const isToc = slide.id === 2;
+  const isSites = slide.id === 8;
   const tocItems = isToc
     ? [
         { label: "Görev ve Sorumluluklar", id: 3 },
         { label: "Yürütülen Başlıca Projeler", id: 4 },
         { label: "Operasyonlara Katkılar", id: 5 },
-        { label: "Süreçler ve Otomasyonlar", id: 6 },
-        { label: "Örnek Başarılar / İyileştirmeler", id: 7 },
-        { label: "Kullanılan Teknolojiler", id: 1 },
-        { label: "Gelecek Planları", id: 8 },
+        { label: "Tool’lar & Entegrasyonlar (1/2)", id: 6 },
+        { label: "Tool’lar & Entegrasyonlar (2/2)", id: 7 },
+        { label: "Sitelerimiz", id: 8 },
+        { label: "Örnek Başarılar / İyileştirmeler", id: 9 },
+        { label: "Gelecek Planları", id: 10 },
       ]
     : [];
 
@@ -174,8 +195,9 @@ function SlideSection({
     >
       <div className="max-w-5xl w-full text-center">
         {slide.id === 1 ? (
-          <div className="mb-6 flex items-center justify-center gap-4">
-            <div className="relative h-16 sm:h-20 md:h-24 lg:h-28 w-[90vw] max-w-[640px] sm:max-w-[780px] lg:max-w-[920px] float">
+          <div className="mb-6 flex items-center justify-center gap-4 hero">
+            <div className="hero-orb" />
+            <div className="relative h-16 sm:h-20 md:h-24 lg:h-28 w-[90vw] max-w-[640px] sm:max-w-[780px] lg:max-w-[920px] float glow-ring logo-cool">
               <Image
                 src="/img/teams/ie-logo.svg"
                 alt="Interesting Engineering"
@@ -188,9 +210,16 @@ function SlideSection({
           </div>
         ) : null}
 
-        <h1 className="h1 mb-2 gradient-title">{slide.title}</h1>
+        {slide.id !== 11 ? (
+          <h1 className="h1 mb-2 gradient-title fade-up">{slide.title}</h1>
+        ) : null}
         {slide.subtitle ? (
-          <p className="p-lg opacity-80">{slide.subtitle}</p>
+          <p
+            className="p-lg opacity-80 fade-up"
+            style={{ animationDelay: "60ms" }}
+          >
+            {slide.subtitle}
+          </p>
         ) : null}
 
         {isToc ? (
@@ -211,6 +240,45 @@ function SlideSection({
                 </span>
               </button>
             ))}
+          </div>
+        ) : null}
+
+        {isSites ? (
+          <div className="mt-8 mx-auto max-w-3xl text-left">
+            <pre className="font-mono text-sm bg-white/5 border border-white/10 rounded-xl p-4 overflow-auto">
+              {`IE Properties
+├─ interestingengineering.com
+├─ shop.interestingengineering.com
+├─ jobs.interestingengineering.com
+└─ ie.media`}
+            </pre>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {[
+                {
+                  href: "https://interestingengineering.com",
+                  label: "interestingengineering.com",
+                },
+                {
+                  href: "https://shop.interestingengineering.com",
+                  label: "shop.interestingengineering.com",
+                },
+                {
+                  href: "https://jobs.interestingengineering.com",
+                  label: "jobs.interestingengineering.com",
+                },
+                { href: "https://ie.media", label: "ie.media" },
+              ].map((s) => (
+                <a
+                  key={s.href}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="glass rounded-full px-3 py-1 text-xs opacity-90 border border-white/15"
+                >
+                  {s.label}
+                </a>
+              ))}
+            </div>
           </div>
         ) : null}
 
@@ -319,7 +387,17 @@ function SlideSection({
             ))}
           </ul>
         ) : null}
-        <div className="mt-10 text-xs opacity-60">{`Slide ${slide.id}/9`}</div>
+
+        {!isToc && slide.id === 11 ? (
+          <div className="mt-8 thank-wrap">
+            <div className="thank-title">Katılımınız için teşekkürler!</div>
+            <div className="thank-sub">
+              Birlikte daha iyisini inşa etmeye devam edelim.
+            </div>
+            <div className="rocket-big">🚀</div>
+          </div>
+        ) : null}
+        <div className="mt-10 text-xs opacity-60">{`Slide ${displayIndex}/${total}`}</div>
       </div>
     </section>
   );
@@ -380,8 +458,14 @@ export default function Home() {
 
   return (
     <div className="h-screen w-full overflow-y-auto snap-y" ref={containerRef}>
-      {sections.map((s) => (
-        <SlideSection key={s.id} slide={s} onGoToId={goToId} />
+      {sections.map((s, i) => (
+        <SlideSection
+          key={s.id}
+          slide={s}
+          onGoToId={goToId}
+          total={sections.length}
+          displayIndex={i + 1}
+        />
       ))}
 
       <nav className="dots">
