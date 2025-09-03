@@ -88,7 +88,7 @@ body {
 .glow-ring::after { content: ""; position: absolute; inset: -10%; border-radius: 24px; background: conic-gradient(from 0deg, rgba(255,255,255,.25), rgba(255,255,255,.05), rgba(255,255,255,.25)); filter: blur(18px); opacity: .35; z-index: -1; }
 
 /* Cool logo effects */
-.logo-cool { position: relative; transition: transform .35s ease, filter .35s ease; filter: drop-shadow(0 12px 40px rgba(164,119,255,.18)) drop-shadow(0 6px 24px rgba(255,153,230,.18)); }
+.logo-cool { position: relative; transition: transform .35s ease, filter .35s ease; filter: drop-shadow(0 12px 40px rgba(164,119,255,.18)) drop-shadow(0 6px 24px rgba(255,153,230,.18)); overflow: hidden; }
 .logo-cool:hover { transform: translateY(-2px) scale(1.015); filter: drop-shadow(0 16px 56px rgba(164,119,255,.22)) drop-shadow(0 10px 34px rgba(255,153,230,.22)); }
 .logo-cool::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%); mix-blend-mode: screen; transform: translateX(-40%); animation: sheen 3s ease-in-out infinite; pointer-events: none; border-radius: 18px; }
 @keyframes sheen { 0% { transform: translateX(-40%); } 60% { transform: translateX(140%); } 100% { transform: translateX(140%); } }

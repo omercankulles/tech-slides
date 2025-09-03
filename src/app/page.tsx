@@ -407,53 +407,75 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const sections = useMemo(() => slidesData, []);
+  const programmaticRef = useRef(false);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
-    let ticking = false;
-    function onWheel(e: WheelEvent) {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        if (e.deltaY > 8) setIndex((p) => Math.min(p + 1, sections.length - 1));
-        if (e.deltaY < -8) setIndex((p) => Math.max(p - 1, 0));
-        setTimeout(() => (ticking = false), 450);
-      });
-    }
-
     function onKey(e: KeyboardEvent) {
+      function goTo(i: number) {
+        programmaticRef.current = true;
+        setIndex(i);
+      }
       if (["ArrowDown", "PageDown", " "].includes(e.key)) {
         e.preventDefault();
-        setIndex((p) => Math.min(p + 1, sections.length - 1));
+        goTo(Math.min(index + 1, sections.length - 1));
       }
       if (["ArrowUp", "PageUp"].includes(e.key)) {
         e.preventDefault();
-        setIndex((p) => Math.max(p - 1, 0));
+        goTo(Math.max(index - 1, 0));
       }
-      if (e.key === "Home") setIndex(0);
-      if (e.key === "End") setIndex(sections.length - 1);
+      if (e.key === "Home") goTo(0);
+      if (e.key === "End") goTo(sections.length - 1);
     }
 
-    el.addEventListener("wheel", onWheel, { passive: true });
     window.addEventListener("keydown", onKey);
     return () => {
-      el.removeEventListener("wheel", onWheel);
       window.removeEventListener("keydown", onKey);
     };
-  }, [sections.length]);
+  }, [index, sections.length]);
 
+  // Aktif slaytı scroll konumuna göre belirle
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const sectionEls = Array.from(el.children) as HTMLElement[];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((en) => en.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const newIndex = sectionEls.indexOf(visible.target as HTMLElement);
+        if (newIndex !== -1 && newIndex !== index) {
+          setIndex(newIndex);
+        }
+      },
+      { root: el, threshold: [0.55, 0.75] }
+    );
+
+    sectionEls.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [index]);
+
+  // Programatik geçişlerde yumuşak kaydırma
+  useEffect(() => {
+    if (!programmaticRef.current) return;
     const el = containerRef.current;
     if (!el) return;
     const target = el.children[index] as HTMLElement | undefined;
     if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    programmaticRef.current = false;
   }, [index]);
 
   const goToId = (id: number) => {
     const targetIndex = sections.findIndex((s) => s.id === id);
-    if (targetIndex >= 0) setIndex(targetIndex);
+    if (targetIndex >= 0) {
+      programmaticRef.current = true;
+      setIndex(targetIndex);
+    }
   };
 
   return (
@@ -474,7 +496,10 @@ export default function Home() {
             key={s.id}
             aria-label={`Go to slide ${s.id}`}
             aria-current={i === index}
-            onClick={() => setIndex(i)}
+            onClick={() => {
+              programmaticRef.current = true;
+              setIndex(i);
+            }}
             title={`Slide ${s.id}`}
           />
         ))}
