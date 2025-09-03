@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="120" viewBox="0 0 640 120" fill="none">
+  <rect width="640" height="120" fill="none"/>
+  <g>
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+      font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif"
+      font-size="44" font-weight="800" fill="#ffffff" letter-spacing="2">
+      INTERESTING ENGINEERING
+    </text>
+  </g>
+</svg>

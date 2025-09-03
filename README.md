@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tech Slides — Interesting Engineering
 
-## Getting Started
+Bu depo, Tech departmanının Operasyon ekibine sunduğu içerikleri modern ve minimalist bir slayt sitesi olarak göstermeyi amaçlayan Next.js + Tailwind projesidir.
 
-First, run the development server:
+## Özellikler
+
+- Tam ekran scroll-snap ile slayt geçişleri (klavye ve wheel desteği)
+- Kapak: IE logosu, tarih, ekip kartları, teknoloji rozetleri
+- “Sunum İçeriği” slaydında tıklanabilir içerik (ilgili slayda kaydırır)
+- 9 slayt için örnek içerik (yer yer placeholder)
+- Tailwind tabanlı tema, cam/glass efektleri ve animasyonlar
+
+## Kurulum
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Varsayılan: http://localhost:3000 (port doluysa Next.js alternatif bir port seçer)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Düzenleme
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Slayt içerikleri: `src/app/page.tsx` dosyasındaki `slidesData` dizisi.
+- Kapak logo: `public/img/teams/ie-logo.svg` (dosyayı değiştirerek güncelleyebilirsiniz).
+- Ekip bilgileri ve avatarlar: `TEAM` dizisi ve `public/omercan-kulles.png`, `public/img/teams/*`.
+- Tema/stiller: `src/app/globals.css`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Kısayollar
 
-## Learn More
+- Klavye: Aşağı/Yukarı ok, PageDown/PageUp, Space, Home/End.
+- Dots navigasyonu: Sağ kenardaki noktalar ile slayt atlama.
+- “Sunum İçeriği” slaydındaki kartlara tıklayarak ilgili slayda gidin.
 
-To learn more about Next.js, take a look at the following resources:
+## Dağıtım (Deploy)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Üretim derlemesi:
+   ```bash
+   npm run build
+   npm start
+   ```
+2. Vercel ile tek tık deploy önerilir.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Yapılandırma
 
-## Deploy on Vercel
+- Next.js sürümü: 15.x (App Router)
+- Tailwind: `@tailwindcss/postcss` ile PostCSS üzerinden etkin
+- Alias: `@/*`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notlar
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- İçerikler örnek/placeholder değerler içerir; kendi metinlerinizi kolayca `slidesData` ve `TEAM` üzerinden düzenleyin.
+- Tasarım minimaldir; gradient başlık, cam efektli kartlar ve marquee rozetler kapakta kullanılır.
+
+## Lisans
+
+Bu proje kurum içi sunum amaçlıdır. Dışa açık kullanım gerektiriyorsa lisans bilgisi ekleyin.
