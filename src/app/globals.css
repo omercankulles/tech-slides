@@ -117,6 +117,7 @@ body {
 @media (max-width: 640px) { .team-row { gap: 10px; } .team-card { padding: 8px 12px; width: 92vw; } }
 .team-title { font-weight: 700; }
 .team-role { opacity: .9; font-size: 12px; }
+.role-ico { filter: drop-shadow(0 4px 10px rgba(255,255,255,.15)); }
 
 /* TOC cards */
 .toc-item { display: grid; grid-template-columns: 36px 1fr 18px; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); transition: background .2s ease, transform .2s ease, border-color .2s ease; }

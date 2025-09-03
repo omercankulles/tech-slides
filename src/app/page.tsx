@@ -16,6 +16,18 @@ type TeamMember = {
   avatar?: string;
 };
 
+function getRoleIcon(role?: string): string {
+  if (!role) return "👤";
+  const r = role.toLowerCase();
+  if (r.includes("engineering") && r.includes("manager")) return "🧑‍💻";
+  if (r.includes("manager")) return "🧭";
+  if (r.includes("frontend") || r.includes("mobile") || r.includes("developer"))
+    return "💻";
+  if (r.includes("ui") || r.includes("ux")) return "🎨";
+  if (r.includes("growth") || r.includes("project")) return "📈";
+  return "⚙️";
+}
+
 const TODAY = new Date().toLocaleDateString("tr-TR", {
   day: "numeric",
   month: "long",
@@ -35,7 +47,7 @@ const TEAM: TeamMember[] = [
   },
   {
     name: "Hüdaverdi Ural",
-    role: "UI/UX",
+    role: "UI/UX Designer",
     avatar: "/img/teams/hüdaverdi-ural.png",
   },
   {
@@ -299,10 +311,17 @@ function SlideSection({
                       className="rounded-full object-cover"
                     />
                   ) : null}
-                  <div className="text-left">
+                  <div className="text-left flex-1">
                     <div className="team-title">{m.name}</div>
                     <div className="team-role">{m.role}</div>
                   </div>
+                  <span
+                    aria-hidden
+                    title={m.role}
+                    className="role-ico text-lg sm:text-xl"
+                  >
+                    {getRoleIcon(m.role)}
+                  </span>
                 </div>
               ))}
             </div>
@@ -322,10 +341,17 @@ function SlideSection({
                       className="rounded-full object-cover"
                     />
                   ) : null}
-                  <div className="text-left">
+                  <div className="text-left flex-1">
                     <div className="team-title">{m.name}</div>
                     <div className="team-role">{m.role}</div>
                   </div>
+                  <span
+                    aria-hidden
+                    title={m.role}
+                    className="role-ico text-lg sm:text-xl"
+                  >
+                    {getRoleIcon(m.role)}
+                  </span>
                 </div>
               ))}
             </div>
