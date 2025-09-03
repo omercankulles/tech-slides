@@ -19,6 +19,8 @@
   }
 }
 
+html, body { height: 100%; overflow: hidden; overscroll-behavior-y: contain; }
+
 body {
   background: radial-gradient(1200px 800px at 80% -10%, #1b1b2b 0%, transparent 60%),
               radial-gradient(1000px 600px at -10% 100%, #101020 0%, transparent 60%),
@@ -27,8 +29,8 @@ body {
 }
 
 /* Fullscreen snap container */
-.snap-y { scroll-snap-type: y mandatory; }
-.snap-start { scroll-snap-align: start; }
+.snap-y { scroll-snap-type: y mandatory; overscroll-behavior-y: contain; }
+.snap-start { scroll-snap-align: start; scroll-snap-stop: always; }
 
 /* Animated subtle grid */
 .bg-animated::before {
@@ -44,15 +46,16 @@ body {
 @keyframes gridFloat { from { transform: translateY(0); } to { transform: translateY(-40px); } }
 
 /* Headings */
-.h1 { font-size: clamp(28px, 5vw, 56px); font-weight: 800; letter-spacing: -0.02em; }
-.h2 { font-size: clamp(22px, 3.5vw, 36px); font-weight: 700; }
-.p-lg { font-size: clamp(16px, 2vw, 20px); opacity: .9; }
+.h1 { font-size: clamp(22px, 4.8vw, 56px); font-weight: 800; letter-spacing: -0.02em; }
+.h2 { font-size: clamp(18px, 3.6vw, 36px); font-weight: 700; }
+.p-lg { font-size: clamp(14px, 2vw, 20px); opacity: .9; }
 
 /* Brand label */
 .brand { font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: clamp(16px, 2.4vw, 26px); }
 
 /* Dots nav */
 .dots { position: fixed; right: 16px; top: 50%; transform: translateY(-50%); display: grid; gap: 10px; }
+@media (max-width: 640px) { .dots { display: none; } }
 .dots button { width: 10px; height: 10px; border-radius: 9999px; background: rgba(255,255,255,.35); transition: transform .2s ease, background .2s ease; }
 .dots button:hover { transform: scale(1.15); }
 .dots button[aria-current="true"] { background: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.15); }
@@ -92,13 +95,14 @@ body {
 
 /* Team cards */
 .team-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-.team-card { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06); box-shadow: 0 10px 30px rgba(0,0,0,.25); width: clamp(280px, 30vw, 360px); }
+.team-card { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.06); box-shadow: 0 10px 30px rgba(0,0,0,.25); width: clamp(260px, 88vw, 360px); }
+@media (max-width: 640px) { .team-row { gap: 10px; } .team-card { padding: 8px 12px; width: 92vw; } }
 .team-title { font-weight: 700; }
 .team-role { opacity: .9; font-size: 12px; }
-@media (max-width: 640px) { .team-card { width: 100%; } }
 
 /* TOC cards */
 .toc-item { display: grid; grid-template-columns: 36px 1fr 18px; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04); transition: background .2s ease, transform .2s ease, border-color .2s ease; }
+@media (max-width: 640px) { .toc-item { grid-template-columns: 28px 1fr 16px; padding: 12px 12px; } }
 .toc-item:hover { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18); transform: translateY(-1px); }
 .toc-index { font-family: var(--font-mono); opacity: .65; font-size: 12px; }
 .toc-label { font-weight: 600; }

@@ -169,18 +169,18 @@ function SlideSection({
 
   return (
     <section
-      className="h-[100svh] w-full snap-start flex items-center justify-center px-6"
+      className="min-h-[100svh] w-full snap-start flex items-center justify-center px-6 py-10 sm:py-12"
       aria-label={`Slide ${slide.id}`}
     >
       <div className="max-w-5xl w-full text-center">
         {slide.id === 1 ? (
           <div className="mb-6 flex items-center justify-center gap-4">
-            <div className="relative h-20 md:h-24 lg:h-28 w-[640px] md:w-[780px] lg:w-[920px] float">
+            <div className="relative h-16 sm:h-20 md:h-24 lg:h-28 w-[90vw] max-w-[640px] sm:max-w-[780px] lg:max-w-[920px] float">
               <Image
                 src="/img/teams/ie-logo.svg"
                 alt="Interesting Engineering"
                 fill
-                sizes="(min-width: 1024px) 920px, (min-width: 768px) 780px, 640px"
+                sizes="(min-width: 1024px) 920px, (min-width: 640px) 780px, 90vw"
                 className="object-contain"
                 priority
               />
@@ -379,10 +379,7 @@ export default function Home() {
   };
 
   return (
-    <div
-      className="min-h-screen w-full overflow-y-auto snap-y"
-      ref={containerRef}
-    >
+    <div className="h-screen w-full overflow-y-auto snap-y" ref={containerRef}>
       {sections.map((s) => (
         <SlideSection key={s.id} slide={s} onGoToId={goToId} />
       ))}
